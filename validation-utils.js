@@ -8,25 +8,26 @@ class Ensure {
      * Ensures that the value of a parameter is not null.
      * @throws ArgumentNullError
      */
-    static isNotNull(value) {
-        if (value === null) throw new errors.ArgumentNullError();
+    static isNotNull(value, paramName) {
+        if (value === null) throw new errors.ArgumentNullError(paramName);
     }
 
     /**
      * Ensures that the value of a parameter is not undefined.
      * @throws ArgumentUndefinedError
      */
-    static isNotUndefined(value) {
-        if (value === undefined) throw new errors.ArgumentUndefinedError();
+    static isNotUndefined(value, paramName) {
+        if (value === undefined) throw new errors.ArgumentUndefinedError(paramName);
     }
 
     /**
      * Ensures that the string value of a parameter is not null or empty.
      * @param {string} value
+     * @param {string} paramName
      * @throws ArgumentError
      */
-    static isNotNullOrEmpty(value) {
-        if (value === null || value.length == 0) throw new errors.ArgumentError("String value is null or empty.");
+    static isNotNullOrEmpty(value, paramName) {
+        if (value === null || value.length == 0) throw new errors.ArgumentError(paramName, "String value is null or empty.");
     }
 
     /**
@@ -35,8 +36,8 @@ class Ensure {
      * @param {number} comparand
      * @throws ArgumentError
      */
-    static isGreaterThan(value, comparand) {
-        if (value <= comparand) throw new errors.ArgumentError(`${value} is not greater then ${comparand}.`);
+    static isGreaterThan(value, comparand, paramName) {
+        if (value <= comparand) throw new errors.ArgumentError(paramName, `${value} is not greater then ${comparand}.`);
     }
 
     /**
@@ -44,8 +45,8 @@ class Ensure {
      * @param {number} value
      * @throws ArgumentError
      */
-    static isGreaterThanZero(value) {
-        if (value <= 0) throw new errors.ArgumentError(`${value} is not greater then zero(0).`);
+    static isGreaterThanZero(value, paramName) {
+        if (value <= 0) throw new errors.ArgumentError(paramName, `${value} is not greater then zero(0).`);
     }
 
     /**
@@ -53,8 +54,8 @@ class Ensure {
      * @param {number} value
      * @throws ArgumentError
      */
-    static isNumberAndNotNaN(value) {
-        if (typeof value !== 'number' || isNaN(value)) throw new errors.ArgumentError(`${value} is NaN or not a number.`);
+    static isNumberAndNotNaN(value, paramName) {
+        if (typeof value !== 'number' || isNaN(value)) throw new errors.ArgumentError(paramName, `${value} is NaN or not a number.`);
     }
 
     /**
@@ -64,9 +65,9 @@ class Ensure {
      * @param {number} max
      * @throws ArgumentError
      */
-    static isBetween(value, min, max) {
+    static isBetween(value, min, max, paramName) {
         this.isNumberAndNotNaN(value);
-        if (value < min || value > max) throw new errors.ArgumentError(`${value} is not between ${min} and ${max}.`);
+        if (value < min || value > max) throw new errors.ArgumentError(paramName, `${value} is not between ${min} and ${max}.`);
     }
 }
 

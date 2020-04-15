@@ -1,20 +1,21 @@
 class ArgumentError extends Error {
-    constructor(message = "Value is not valid.") {
-        super(message);
+    constructor(paramName, message = "Value is not valid.") {
+        super(paramName, message);
         this.name = "ArgumentError";
+        this.message = `${message} Parameter name: ${paramName == undefined ? "(no parameter)" : paramName}.`;
     }
 }
 
 class ArgumentNullError extends ArgumentError {
-    constructor(message = "Value is null.") {
-        super(message);
+    constructor(paramName, message = "Value is null.") {
+        super(paramName, message);
         this.name = "ArgumentNullError";
     }
 }
 
 class ArgumentUndefinedError extends ArgumentError {
-    constructor(message = "Value is undefined.") {
-        super(message);
+    constructor(paramName, message = "Value is undefined.") {
+        super(paramName, message);
         this.name = "ArgumentUndefinedError";
     }
 }
