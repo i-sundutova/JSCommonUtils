@@ -1,3 +1,5 @@
+var errors = require('./custom-errors');
+
 /**
 * Represents methods that can be used to ensure that parameter values meet expected conditions.
 */
@@ -7,7 +9,7 @@ class Ensure {
      * @throws ArgumentNullError
      */
     static isNotNull(value) {
-        if (value === null) throw new ArgumentNullError();
+        if (value === null) throw new errors.ArgumentNullError();
     }
 
     /**
@@ -15,7 +17,7 @@ class Ensure {
      * @throws ArgumentUndefinedError
      */
     static isNotUndefined(value) {
-        if (value === undefined) throw new ArgumentUndefinedError();
+        if (value === undefined) throw new errors.ArgumentUndefinedError();
     }
 
     /**
@@ -24,7 +26,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isNotNullOrEmpty(value) {
-        if (value === null || value.length == 0) throw new ArgumentError("String value is null or empty.");
+        if (value === null || value.length == 0) throw new errors.ArgumentError("String value is null or empty.");
     }
 
     /**
@@ -34,7 +36,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isGreaterThan(value, comparand) {
-        if (value <= comparand) throw new ArgumentError(`${value} is not greater then ${comparand}.`);
+        if (value <= comparand) throw new errors.ArgumentError(`${value} is not greater then ${comparand}.`);
     }
 
     /**
@@ -43,7 +45,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isGreaterThanZero(value) {
-        if (value <= 0) throw new ArgumentError(`${value} is not greater then zero(0).`);
+        if (value <= 0) throw new errors.ArgumentError(`${value} is not greater then zero(0).`);
     }
 
     /**
@@ -52,7 +54,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isNumberAndNotNaN(value) {
-        if (typeof value !== 'number' || isNaN(value)) throw new ArgumentError(`${value} is NaN or not a number.`);
+        if (typeof value !== 'number' || isNaN(value)) throw new errors.ArgumentError(`${value} is NaN or not a number.`);
     }
 
     /**
@@ -64,6 +66,8 @@ class Ensure {
      */
     static isBetween(value, min, max) {
         this.isNumberAndNotNaN(value);
-        if (value < min || value > max) throw new ArgumentError(`${value} is not between ${min} and ${max}.`);
+        if (value < min || value > max) throw new errors.ArgumentError(`${value} is not between ${min} and ${max}.`);
     }
 }
+
+module.exports = Ensure;

@@ -18,3 +18,8 @@ class ArgumentUndefinedError extends ArgumentError {
         this.name = "ArgumentUndefinedError";
     }
 }
+
+
+module.exports.ArgumentError = ArgumentError;
+module.exports.ArgumentNullError = ArgumentNullError;
+module.exports.ArgumentUndefinedError = ArgumentUndefinedError;
