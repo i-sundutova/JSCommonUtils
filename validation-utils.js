@@ -55,7 +55,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isNumberAndNotNaN(value, paramName) {
-        if (typeof value !== 'number' || isNaN(value)) throw new errors.ArgumentError(paramName, `${value} is NaN or not a number.`);
+        if (typeof value !== 'number' || Number.isNaN(value)) throw new errors.ArgumentError(paramName, `${value} is NaN or not a number.`);
     }
 
     /**
