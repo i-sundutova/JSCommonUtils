@@ -1,7 +1,8 @@
 class ArgumentError extends Error {
     constructor(paramName, message = "Value is not valid.") {
-        super(paramName, message);
+        super(message);
         this.name = "ArgumentError";
+        this.paramName = paramName;
         this.message = `${message} Parameter name: ${paramName == undefined ? "(no parameter)" : paramName}.`;
     }
 }
