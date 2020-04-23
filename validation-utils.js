@@ -27,6 +27,7 @@ class Ensure {
      * @throws ArgumentError
      */
     static isNotNullOrEmpty(value, paramName) {
+        if (value === undefined) return;
         if (value === null || value.length == 0) throw new errors.ArgumentError(paramName, "String value is null or empty.");
     }
 
